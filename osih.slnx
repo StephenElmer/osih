@@ -5,6 +5,7 @@
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path="README.md" />
+    <File Path="requirements.md" />
   </Folder>
   <Project Path="backend/osih.api/osih.api.csproj" Id="7ebb46ad-f991-4f9e-a6c9-d66120b2a399" />
   <Project Path="data/osih.data/osih.data.csproj" Id="231d355b-6342-40d8-adfd-807d660f8c94" />

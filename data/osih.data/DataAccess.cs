@@ -3,12 +3,15 @@ using osih.model;
 
 namespace osih.data
 {
+    //A simple data access class to read from the two source systems.  A real data access layer would support CRUD operations, connection management, transactions, etc.
     public class DataAccess
     {
         public List<Order> Orders { get; set; } = new List<Order>();
 
         public DataAccess() 
         {
+            //TODO: this is an easy hack.  ideally, the various system types would be abstracted and injected to allow
+
             string systemAJson = AppContext.BaseDirectory + "system_a_orders.json";
             string systemBCsv = AppContext.BaseDirectory + "system_b_orders.csv";
 
@@ -22,6 +25,8 @@ namespace osih.data
 
         public void ReadSystemA(string fileName)
         {
+            if (!File.Exists(fileName)) return; //TODO: log this
+
             string jsonString = File.ReadAllText(fileName);
             var myData = JsonSerializer.Deserialize<List<OrderA_DTO>>(jsonString);
 
@@ -47,6 +52,8 @@ namespace osih.data
 
         public void ReadSystemB(string fileName)
         {
+            if (!File.Exists(fileName)) return; //TODO: log this
+
             using (var reader = new StreamReader(fileName))
             {
                 using (var csv = new CsvHelper.CsvReader(reader, System.Globalization.CultureInfo.InvariantCulture))
@@ -71,8 +78,11 @@ namespace osih.data
             }
         }
 
+
         private string NormalizeStatus(string system, string? status)
         {
+            //Yeah, this is a quick and dirty way to normalize status codes from different systems.
+
             switch (system)
             {
                 case "SystemA":

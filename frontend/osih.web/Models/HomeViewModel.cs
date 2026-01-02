@@ -9,7 +9,7 @@ namespace osih.web.Models
 
         public Order? SelectedOrder { get; set; } = null;
 
-        public List<string> Statuses { get; set; } = new() { "Pending", "Processing", "Shipped", "Delivered", "Cancelled" };
+        public List<string> Statuses { get; set; } = new() { "Pending", "Processing", "Shipped", "Completed", "Cancelled" };
 
         [Display(Name = "Status")]
         [DataType(DataType.Text)]

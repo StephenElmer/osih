@@ -70,8 +70,8 @@
                             <td>@o.OrderId</td>
                             <td>@o.SourceSystem</td>
                             <td>@o.CustomerName</td>
-                            <td>@o.OrderDate.ToShortDateString()</td>
-                            <td>@o.TotalAmount.ToString("C")</td>
+                            <td>@o.OrderDate?.ToShortDateString()</td>
+                            <td>@o.TotalAmount?.ToString("C")</td>
                             <td>@o.Status</td>
                             <td><a href="?orderId=@o.OrderId">view</a></td>
                         </tr>
