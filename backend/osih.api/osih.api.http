@@ -1,0 +1,6 @@
+@osih.api_HostAddress = http://localhost:5139
+
+GET {{osih.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

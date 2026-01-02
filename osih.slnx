@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/data/">
+    <File Path="data/system_a_orders.json" />
+    <File Path="data/system_b_orders.csv" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="backend/osih.api/osih.api.csproj" Id="7ebb46ad-f991-4f9e-a6c9-d66120b2a399" />
+  <Project Path="data/osih.data/osih.data.csproj" Id="231d355b-6342-40d8-adfd-807d660f8c94" />
+  <Project Path="frontend/osih.web/osih.web.csproj" Id="c52ebd65-7668-4adf-9d86-4aa82a4d4e3a" />
+  <Project Path="model/osih.model/osih.model.csproj" Id="88f20c64-79a2-407a-b8ad-cec267aeeb2e" />
+</Solution>

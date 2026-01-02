@@ -1,0 +1,151 @@
+﻿@model osih.web.Models.HomeViewModel
+@using osih.web.Models
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Welcome</h1>
+
+
+    <div class="row">
+        <div class="col-6">
+            
+            <hr />
+
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "mulipart/form-data"}))
+            {
+                <div class="row">
+                    <div class="col-4">
+                        <label for="Status">Status:</label>
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(x => x.SelectedStatus, new SelectList(this.ViewData.Model.Statuses), "-- All --", new { @class = "form-select" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="SelectedStartDate">Start Date:</label>
+                    </div>
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.SelectedStartDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="SelectedEndDate">End Date:</label>
+                    </div>
+                    <div class="col-8">
+                        @Html.TextBoxFor(x => x.SelectedEndDate, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            }
+
+            <hr />
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>System</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < this.ViewData.Model.Orders.Count; i++)
+                    {
+                        var o = this.ViewData.Model.Orders[i];
+                        <tr>
+                            <td>@o.OrderId</td>
+                            <td>@o.SourceSystem</td>
+                            <td>@o.CustomerName</td>
+                            <td>@o.OrderDate.ToShortDateString()</td>
+                            <td>@o.TotalAmount.ToString("C")</td>
+                            <td>@o.Status</td>
+                            <td><a href="?orderId=@o.OrderId">view</a></td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+
+        </div>
+        <div class="col-6">
+
+            @if (this.ViewData.Model.SelectedOrder != null)
+            {
+                <div class="row">
+                    <div class="col-3">
+                        Order ID:
+                    </div>
+                    <div class="col-9">
+                        @Html.TextBoxFor(m => m.SelectedOrder.OrderId)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        System:
+                    </div>
+                    <div class="col-9">
+                        @Html.TextBoxFor(m => m.SelectedOrder.SourceSystem)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        Customer:
+                    </div>
+                    <div class="col-9">
+                        @Html.TextBoxFor(m => m.SelectedOrder.CustomerName)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        Date:
+                    </div>
+                    <div class="col-9">
+                        @Html.TextBoxFor(m => m.SelectedOrder.OrderDate)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        Amount:
+                    </div>
+                    <div class="col-9">
+                        @Html.TextBoxFor(m => m.SelectedOrder.TotalAmount)
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        Status:
+                    </div>
+                    <div class="col-9">
+                        @Html.TextBoxFor(m => m.SelectedOrder.Status)
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p>No Order Selected</p>                
+            }
+
+        </div>
+    </div>
+
+</div>
